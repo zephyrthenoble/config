@@ -5,15 +5,15 @@
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 
 welcome() {
-        if command -v figlet 1>/dev/null; then
-            figlet Welcome Back $USERNAME
-        else
-            echo "Welcome Back $USERNAME"
-        fi
-        }
+    if command -v figlet 1>/dev/null; then
+        figlet Welcome Back $USERNAME
+    else
+        echo "Welcome Back $USERNAME"
+    fi
+}
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 
@@ -34,10 +34,15 @@ alias dl='cd ~/Downloads'
 alias python='python2.7'
 alias rm='rm -i'
 alias rustc="/usr/bin/rustc"
+alias yum="sudo yum"
+alias yumi="sudo yum install"
+alias yumu="sudo yum update"
+alias apt-get="sudo apt-get"
 
 
 export PATH="$PATH:/usr/local/bin"
 export AWS_CONFIG_FILE='awscli.conf'
+export XDG_CONFIG_COME='~/.config'
 
 
 function backup { /bin/tar "czf" "$@" "$@.tgz" ;}
