@@ -24,6 +24,8 @@ set wildignore=*.o,*~,*.pyc
 set ruler
 set laststatus=2
 set confirm
+set mouse=a
+
 
 " Commenting blocks of code. ,cc to add, ,cu to remove
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
