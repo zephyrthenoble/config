@@ -38,6 +38,7 @@ alias yum="sudo yum"
 alias yumi="sudo yum install"
 alias yumu="sudo yum update"
 alias apt-get="sudo apt-get"
+alias apti="sudo apgt-get install"
 
 
 export PATH="$PATH:/usr/local/bin"
