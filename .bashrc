@@ -34,6 +34,8 @@ alias dl='cd ~/Downloads'
 alias python='python2.7'
 alias rm='rm -i'
 alias rustc="/usr/bin/rustc"
+
+alias pip="sudo pip"
 alias yum="sudo yum"
 alias yumi="sudo yum install"
 alias yumu="sudo yum update"
