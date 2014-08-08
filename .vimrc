@@ -1,4 +1,9 @@
-se nu
+execute pathogen#infect()
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+map <leader>td <Plug>TaskList
+map <leader>t <Plug>Command-T
+set nu
 set title
 filetype plugin indent on
 set cindent
@@ -41,7 +46,7 @@ noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<C
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>        
 
 autocmd FileType go autocmd BufWritePre <buffer> Fmt 
-
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 		\| exe "normal! g`\"" | endif
