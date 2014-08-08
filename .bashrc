@@ -40,12 +40,14 @@ alias yum="sudo yum"
 alias yumi="sudo yum install"
 alias yumu="sudo yum update"
 alias apt-get="sudo apt-get"
-alias apti="sudo apgt-get install"
+alias apti="sudo apt-get install"
 
 
 export PATH="$PATH:/usr/local/bin"
-export AWS_CONFIG_FILE='awscli.conf'
+export AWS_CONFIG_FILE='~/.aws/config'
 export XDG_CONFIG_COME='~/.config'
+export PYTHONSTARTUP=~/.pythonrc
+export GOPATH="/home/msmith/gopath"
 
 
 function backup { /bin/tar "czf" "$@" "$@.tgz" ;}
