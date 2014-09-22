@@ -14,8 +14,10 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
     set background=dark
     set clipboard=unnamedplus
-    "set mouse=a
 endif
+
+set clipboard=unnamed
+
 set hidden
 set ignorecase
 set nowrap
@@ -31,6 +33,7 @@ set ruler
 set laststatus=2
 set confirm
 au FileType c,cpp,java setlocal comments-=:// comments+=f://
+set background=dark
 
 " Plaintext only, break on 78
 autocmd FileType text setlocal textwidth=78
@@ -44,6 +47,8 @@ autocmd FileType vim                    let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>        
 
+autocmd FileType go autocmd BufWritePre <buffer> Fmt 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 		\| exe "normal! g`\"" | endif

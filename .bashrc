@@ -32,9 +32,10 @@ export PS1="-[$username@$hostname]-[$directory $commandnumber]\n-> "
 source ~/.bash_aliases
 
 export PATH="$PATH:/usr/local/bin"
-export GOPATH="/home/zephyr/gopath"
-export AWS_CONFIG_FILE='awscli.conf'
+
+
 export XDG_CONFIG_COME='~/.config'
+export PYTHONSTARTUP=~/.pythonrc
 
 
 if [ -f "$HOME/.dircolors" ]
