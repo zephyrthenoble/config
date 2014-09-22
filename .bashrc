@@ -4,6 +4,8 @@
 
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 
+#User defined functions
+function backup { /bin/tar "czf" "$@" "$@.tgz" ;}
 welcome() {
     if command -v figlet 1>/dev/null; then
         figlet Welcome Back $USERNAME
@@ -15,6 +17,9 @@ welcome() {
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases 
+fi
 
 
 username='\e[1;34m\u\e[0m';
@@ -24,28 +29,14 @@ commandnumber='\e[1;31m$?\e[0m';
 
 export PS1="-[$username@$hostname]-[$directory $commandnumber]\n-> "
 
-
-# User specific aliases and functions
-alias path='echo -e ${PATH//:/\\n}'
-alias ls='ls --sort=extension --color=auto'
-alias ll='ls -l -a'
-alias cd..='cd ..'
-alias dl='cd ~/Downloads'
-alias python='python2.7'
-alias rm='rm -i'
-alias rustc="/usr/bin/rustc"
-alias yum="sudo yum"
-alias yumi="sudo yum install"
-alias yumu="sudo yum update"
-alias apt-get="sudo apt-get"
-
+source ~/.bash_aliases
 
 export PATH="$PATH:/usr/local/bin"
+export GOPATH="/home/zephyr/gopath"
 export AWS_CONFIG_FILE='awscli.conf'
 export XDG_CONFIG_COME='~/.config'
 
 
-function backup { /bin/tar "czf" "$@" "$@.tgz" ;}
 if [ -f "$HOME/.dircolors" ]
 then
 eval $(dircolors -b $HOME/.dircolors)
@@ -55,7 +46,10 @@ then
   eval $(dircolors -b /etc/dircolors)
 fi
 
-
+##History
+export HISTSIZE=10000
+export HISTCONTROL=erasedups
+shopt -s histappend
 
 ###Startup
 welcome
