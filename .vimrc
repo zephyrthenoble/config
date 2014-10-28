@@ -8,15 +8,24 @@ set cindent
 set pastetoggle=<F2>
 set backspace=indent,eol,start
 
+function! ToggleMouse()
+    " check if mouse is enabled
+    if &mouse == 'a'
+        " disable mouse
+        set mouse=
+    else
+        " enable mouse everywhere
+        set mouse=a
+    endif
+endfunc
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 if &t_Co > 2 || has("gui_running")
+    map <F3> :call ToggleMouse()<CR>
     syntax on
     set hlsearch
     set background=dark
     set clipboard=unnamedplus
 endif
-
-set clipboard=unnamed
 
 set hidden
 set ignorecase
@@ -50,19 +59,8 @@ noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<
 autocmd FileType go autocmd BufWritePre <buffer> Fmt 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-		\| exe "normal! g`\"" | endif
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+                \| exe "normal! g`\"" | endif
 endif
 
-function! ToggleMouse()
-    " check if mouse is enabled
-    if &mouse == 'a'
-        " disable mouse
-        set mouse=
-    else
-        " enable mouse everywhere
-        set mouse=a
-    endif
-endfunc
 
-map <F3> :call ToggleMouse()<CR>

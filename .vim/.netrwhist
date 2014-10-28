@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/zephyr/Documents/repos/ps4/arch/arm/cpu'
-let g:netrw_dirhist_2='/home/zephyr/Documents/repos/ps4/arch/arm/io'
-let g:netrw_dirhist_3='/home/zephyr/.config/terminator/config'
-let g:netrw_dirhist_4='/home/zephyr/.config'
-let g:netrw_dirhist_5='/home/zephyr/.config/terminator'
-let g:netrw_dirhist_6='/home/zephyr/Documents/repos/markov_chain/markov/state'
