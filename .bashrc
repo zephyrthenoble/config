@@ -57,7 +57,7 @@ welcome
 ls
 
 
-if [ -d "$HOME/google-cloud-sdk"]; then
+if [ -d "$HOME/google-cloud-sdk" ]; then
     # The next line updates PATH for the Google Cloud SDK.
     source '/home/zephyr/google-cloud-sdk/path.bash.inc'
 
