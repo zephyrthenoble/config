@@ -1,13 +1,17 @@
+" turns off vi compatibility
 set nocompatible
+" stops vim from trying to run modelines
+set nomodeline
 set nu
 set title
 filetype plugin indent on
 set cindent
-"autocmd FileType  setlocal  smartindent  et cinwords=if,elif,else,for,while,try,except,finally,def,class
 
+" toggle insert paste
 set pastetoggle=<F2>
 set backspace=indent,eol,start
 
+" toggle mouse
 function! ToggleMouse()
     " check if mouse is enabled
     if &mouse == 'a'
@@ -18,7 +22,10 @@ function! ToggleMouse()
         set mouse=a
     endif
 endfunc
+" tabs are turned into 4 spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+" things to run if in gui environment
 if &t_Co > 2 || has("gui_running")
     map <F3> :call ToggleMouse()<CR>
     syntax on
@@ -29,6 +36,7 @@ endif
 
 set hidden
 set ignorecase
+set smartcase
 set nowrap
 set incsearch
 highlight Comment ctermfg=green
@@ -53,10 +61,13 @@ autocmd FileType conf,fstab             let b:comment_leader = '# '
 autocmd FileType tex                    let b:comment_leader = '% '
 autocmd FileType mail                   let b:comment_leader = '> '
 autocmd FileType vim                    let b:comment_leader = '" '
+" autocomment
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>        
 
+" go fmt when go file closed
 autocmd FileType go autocmd BufWritePre <buffer> Fmt 
+" make sure vim knows .md files are markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
