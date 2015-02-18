@@ -35,7 +35,6 @@ export PATH="$PATH:/usr/local/bin"
 
 
 export XDG_CONFIG_COME='~/.config'
-export PYTHONSTARTUP=~/.pythonrc
 
 
 if [ -f "$HOME/.dircolors" ]
@@ -64,3 +63,10 @@ if [ -d "$HOME/google-cloud-sdk" ]; then
     # The next line enables bash completion for gcloud.
     source '/home/zephyr/google-cloud-sdk/completion.bash.inc'
 fi
+if [ -d "$HOME/.pythonrc" ]; then
+    export PYTHONSTARTUP=~/.pythonrc
+fi
+export JAVA_HOME=/usr/java/jdk.8.0_25
+export LFS=/mnt/lfs
+export GO_PATH=$HOME/go
+export PATH=$PATH;$GO_PATH/bin

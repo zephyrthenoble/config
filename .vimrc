@@ -50,7 +50,8 @@ set ruler
 set laststatus=2
 set confirm
 au FileType c,cpp,java setlocal comments-=:// comments+=f://
-set background=dark
+set colorcolumn=81
+set whichwrap+=<,>,h,l,[,]
 
 " Plaintext only, break on 78
 autocmd FileType text setlocal textwidth=78
