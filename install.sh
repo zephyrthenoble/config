@@ -1,6 +1,22 @@
 #! /bin/sh
 # link all files to the home directory, asking about overwrites
 cd `dirname $0`
+while getopts ":fh" opt; do
+  case $opt in
+    f)
+      echo "forcing removal!"
+      FORCE=true
+      ;;
+    h)
+      echo "-f force removal of everything"
+      exit
+      ;;
+    \?)
+      echo "Invalid args, try -h"
+      exit
+      ;;
+  esac
+done
 SCRIPT_DIR=`pwd`
 SCRIPT_NAME=`basename $0`
 FILES=`git ls-tree -r --name-only HEAD`
@@ -14,6 +30,9 @@ for FILE in $FILES; do
     if [ "." != "$DIRECTORY" ]; then
         [ -d "$DIRECTORY" ] || mkdir -p $DIRECTORY
     fi
-    echo $SCRIPT_DIR/$DIRECTORY/$FILE
-    ln --symbolic --interactive $SCRIPT_DIR/$FILE $FILE
+    if [ "$FORCE" = true ] ; then
+        ln -v -s -f -n $SCRIPT_DIR/$FILE $FILE
+    else
+        ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $FILE
+    fi
 done
