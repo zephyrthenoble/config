@@ -34,6 +34,7 @@ if &t_Co > 2 || has("gui_running")
     set clipboard=unnamedplus
 endif
 
+syntax on
 set hidden
 set ignorecase
 set smartcase
@@ -74,5 +75,3 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
                 \| exe "normal! g`\"" | endif
 endif
-
-
