@@ -1,4 +1,7 @@
-git-hw-to-fork
-==============
+zephyrthenoble's home directory config files
+============================================
 
-_this is an entertaining edit_
+clone to a location
+bash installer.sh
+
+verify overwrites
