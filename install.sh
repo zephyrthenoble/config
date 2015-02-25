@@ -6,6 +6,8 @@ SCRIPT_NAME=`basename $0`
 FILES=`git ls-tree -r --name-only HEAD`
 delete="README.md"
 FILES=${FILES/$delete/""}
+delete="install.sh"
+FILES=${FILES/$delete/""}
 cd $HOME
 for FILE in $FILES; do
     DIRECTORY=`dirname $FILE`
