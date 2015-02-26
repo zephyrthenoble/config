@@ -2,11 +2,16 @@
 # link all files to the home directory, asking about overwrites
 cd `dirname $0`
 FORCE=false
-while getopts ":fh" opt; do
+UPDATE=false
+while getopts ":fuh" opt; do
   case $opt in
     f)
       echo "forcing removal!"
       FORCE=true
+      ;;
+    u)
+      echo "updating only"
+      UPDATE=true
       ;;
     h)
       echo "-f force removal of everything"
@@ -19,7 +24,7 @@ while getopts ":fh" opt; do
   esac
 done
 
- git submodule init
+git submodule init
 bash update.sh
 
 SCRIPT_DIR=`pwd`
@@ -40,6 +45,10 @@ for FILE in $FILES; do
     if [ "$FORCE" = true ] ; then
         ln -v -s -f -n $SCRIPT_DIR/$FILE $FILE
     else
-        ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $FILE
+        if [ "$UPDATE" = true ] && [ -L "$FILE" ]; then
+            echo "$FILE symlink already exists"
+        else
+            ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $FILE
+        fi
     fi
 done
