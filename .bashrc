@@ -63,6 +63,8 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME=/usr/java/jdk.8.0_25
 export LFS=/mnt/lfs
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 
 ##History
