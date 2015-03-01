@@ -14,7 +14,7 @@ while getopts ":fuh" opt; do
       UPDATE=true
       ;;
     h)
-      echo "-f force removal of everything"
+      echo "-f force removal of everything\n-u updates symlinks, only making new ones"
       exit
       ;;
     \?)
