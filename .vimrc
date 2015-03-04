@@ -61,15 +61,25 @@ au FileType c,cpp,java setlocal comments-=:// comments+=f://
 set colorcolumn=81
 set whichwrap+=<,>,h,l,[,]
 
-" Plaintext only, break on 78
-autocmd FileType text setlocal textwidth=78
-" Commenting blocks of code. ,cc to add, ,cu to remove
-autocmd FileType c,cpp,java,scala,go    let b:comment_leader = '// '
-autocmd FileType sh,ruby,python         let b:comment_leader = '# '
-autocmd FileType conf,fstab             let b:comment_leader = '# '
-autocmd FileType tex                    let b:comment_leader = '% '
-autocmd FileType mail                   let b:comment_leader = '> '
-autocmd FileType vim                    let b:comment_leader = '" '
+" For backwards compatibility, check for autocmd
+if has('autocmd')
+    " Plaintext only, break on 78
+    autocmd FileType text setlocal textwidth=78
+    " Commenting blocks of code. ,cc to add, ,cu to remove
+    autocmd FileType c,cpp,java,scala,go    let b:comment_leader = '// '
+    autocmd FileType sh,ruby,python         let b:comment_leader = '# '
+    autocmd FileType conf,fstab             let b:comment_leader = '# '
+    autocmd FileType tex                    let b:comment_leader = '% '
+    autocmd FileType mail                   let b:comment_leader = '> '
+    autocmd FileType vim                    let b:comment_leader = '" '
+    autocmd filetype python set expandtab
+    " go fmt when go file closed
+    autocmd FileType go autocmd BufWritePre <buffer> Fmt 
+    " make sure vim knows .md files are markdown
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+                \| exe "normal! g`\"" | endif
+endif
 
 
 " Custom Functions
@@ -77,14 +87,13 @@ autocmd FileType vim                    let b:comment_leader = '" '
 noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>        
 
+" edit .vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" go fmt when go file closed
-autocmd FileType go autocmd BufWritePre <buffer> Fmt 
-" make sure vim knows .md files are markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-                \| exe "normal! g`\"" | endif
-endif
+" removes highlighted search
+nmap <silent> ,/ :nohlsearch<CR>
+
+
+" reopen as sudo
+cmap w!! w !sudo tee % >/dev/null

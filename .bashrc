@@ -7,6 +7,7 @@ if [ -z ${DESKTOP_SESSION+x} ]; then
     :
 else
     # we have a desktop session
+    # PROMPT_COMMAND is run before every shell execution
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 fi
 
