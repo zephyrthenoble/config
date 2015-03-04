@@ -9,7 +9,8 @@ filetype plugin indent on
 set cindent
 
 " Starts up pathogen
-if isdirectory("bundle/vim-pathogen/autoload")
+if isdirectory($HOME . "/.vim/bundle/vim-pathogen/autoload")
+    echo "Yay"
     runtime bundle/vim-pathogen/autoload/pathogen.vim
     execute pathogen#infect()
 endif
