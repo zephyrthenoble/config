@@ -3,7 +3,9 @@ set nocompatible
 let mapleader=","
 " stops vim from trying to run modelines
 set nomodeline
+" set numbers
 set nu
+
 set title
 filetype plugin indent on
 set cindent
