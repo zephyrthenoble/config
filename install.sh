@@ -25,6 +25,7 @@ while getopts ":fuh" opt; do
 done
 
 git submodule init
+git submodule update
 bash update.sh
 
 SCRIPT_DIR=`pwd`

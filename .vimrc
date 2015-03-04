@@ -62,6 +62,8 @@ set confirm
 au FileType c,cpp,java setlocal comments-=:// comments+=f://
 set colorcolumn=81
 set whichwrap+=<,>,h,l,[,]
+set expandtab
+
 
 " For backwards compatibility, check for autocmd
 if has('autocmd')
@@ -74,7 +76,6 @@ if has('autocmd')
     autocmd FileType tex                    let b:comment_leader = '% '
     autocmd FileType mail                   let b:comment_leader = '> '
     autocmd FileType vim                    let b:comment_leader = '" '
-    autocmd filetype python set expandtab
     " go fmt when go file closed
     autocmd FileType go autocmd BufWritePre <buffer> Fmt 
     " make sure vim knows .md files are markdown
