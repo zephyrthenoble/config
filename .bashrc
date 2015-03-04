@@ -2,7 +2,13 @@
 
 [ -z "$PS1" ] && return
 
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+if [ -z ${DESKTOP_SESSION+x} ]; then
+    # we have a non-desktop session
+    :
+else
+    # we have a desktop session
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+fi
 
 #User defined functions
 function backup { /bin/tar "czf" "$@" "$@.tgz" ;}
@@ -57,6 +63,8 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME=/usr/java/jdk.8.0_25
 export LFS=/mnt/lfs
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 
 ##History
