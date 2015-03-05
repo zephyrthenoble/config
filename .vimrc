@@ -53,6 +53,7 @@ highlight Comment ctermfg=green
 
 
 "Random stuff
+"menu added when you tab complete in : mode
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.o,*~,*.pyc
@@ -95,7 +96,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " removes highlighted search
-nmap <silent> ,/ :nohlsearch<CR>
+nmap <silent> <leader>/ :nohlsearch<CR>
 
 
 " reopen as sudo
