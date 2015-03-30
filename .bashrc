@@ -49,6 +49,10 @@ if [ -d "$HOME/google-cloud-sdk" ]; then
     source '/home/zephyr/google-cloud-sdk/completion.bash.inc'
     alias goapp=~/google-cloud-sdk/platform/google_appengine/goapp
 fi
+if [ -d "/usr/lib64/openmpi" ]; then
+    export PATH=$PATH:/usr/lib64/openmpi/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/openmpi/lib
+fi
 
 # Exports
 username='\e[1;34m\u\e[0m';
