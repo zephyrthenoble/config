@@ -98,6 +98,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " removes highlighted search
 nmap <silent> <leader>/ :nohlsearch<CR>
 
+" Press F5 then a number to switch buffers
+nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " reopen as sudo
 cmap w!! w !sudo tee % >/dev/null
