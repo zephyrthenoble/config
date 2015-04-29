@@ -31,26 +31,23 @@ bash update.sh
 SCRIPT_DIR=`pwd`
 SCRIPT_NAME=`basename $0`
 FILES=`git ls-tree -r --name-only HEAD`
-delete="README.md"
+delete=README.md
 echo $FILES
-FILES=${FILES#$delete}
-delete="install.sh"
-FILES=${FILES#$delete}
-delete="update.sh"
-FILES=${FILES#$delete}
 cd $HOME
 for FILE in $FILES; do
     DIRECTORY=`dirname $FILE`
-    if [ "." != "$DIRECTORY" ]; then
-        [ -d "$DIRECTORY" ] || mkdir -p $DIRECTORY
-    fi
-    if [ "$FORCE" = true ] ; then
-        ln -v -s -f -n $SCRIPT_DIR/$FILE $FILE
-    else
-        if [ "$UPDATE" = true ] && [ -L "$FILE" ]; then
-            echo "$FILE symlink already exists"
+    if [ $FILE != "README.md" ] && [ $FILE != "install.sh" ] && [ $FILE != "update.sh" ]; then
+        if [ "." != "$DIRECTORY" ]; then
+            [ -d "$DIRECTORY" ] || mkdir -p $DIRECTORY
+        fi
+        if [ "$FORCE" = true ] ; then
+            ln -v -s -f -n $SCRIPT_DIR/$FILE $FILE
         else
-            ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $FILE
+            if [ "$UPDATE" = true ] && [ -L "$FILE" ]; then
+                echo "$FILE symlink already exists"
+            else
+                ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $FILE
+            fi
         fi
     fi
 done
