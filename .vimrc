@@ -41,6 +41,9 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
     set background=dark
     set clipboard=unnamedplus
+    " needed to get the status line stuff working
+    set laststatus=2
+    set t_Co=256
 endif
 
 syntax on
