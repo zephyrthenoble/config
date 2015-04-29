@@ -32,11 +32,12 @@ SCRIPT_DIR=`pwd`
 SCRIPT_NAME=`basename $0`
 FILES=`git ls-tree -r --name-only HEAD`
 delete="README.md"
-FILES=${FILES/$delete/""}
+echo $FILES
+FILES=${FILES#$delete}
 delete="install.sh"
-FILES=${FILES/$delete/""}
+FILES=${FILES#$delete}
 delete="update.sh"
-FILES=${FILES/$delete/""}
+FILES=${FILES#$delete}
 cd $HOME
 for FILE in $FILES; do
     DIRECTORY=`dirname $FILE`
