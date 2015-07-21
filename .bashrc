@@ -71,6 +71,10 @@ export LFS=/mnt/lfs
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+export SHARE=/usr/local/share
+export SCALA=$SHARE/scala-2.10.5
+export INTELLIJ=$SHARE/idea-IC-141.1532.4
+export PATH=$PATH:$SCALA/bin:$INTELLIJ/bin
 
 ##History
 export HISTSIZE=10000
