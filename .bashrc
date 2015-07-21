@@ -66,15 +66,16 @@ export XDG_CONFIG_COME='~/.config'
 export PYTHONSTARTUP=~/.pythonrc
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export JAVA_HOME=/usr/java/jdk.8.0_25
 export LFS=/mnt/lfs
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export JAVA_HOME=/usr/lib/jvm/default-java
 
 export SHARE=/usr/local/share
 export SCALA=$SHARE/scala-2.10.5
 export INTELLIJ=$SHARE/idea-IC-141.1532.4
-export PATH=$PATH:$SCALA/bin:$INTELLIJ/bin
+export SPARK==$SHARE/spark-1.4.0
+export PATH=$PATH:$SCALA/bin:$INTELLIJ/bin:$SPARK/bin
 
 ##History
 export HISTSIZE=10000
