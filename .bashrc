@@ -30,6 +30,13 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
 if [ -d "$HOME/.pythonrc" ]; then
     export PYTHONSTARTUP=~/.pythonrc
 fi
@@ -71,11 +78,14 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export JAVA_HOME=/usr/lib/jvm/default-java
 
+
+#work related, not sure how to differentiate this stuff
 export SHARE=/usr/local/share
 export SCALA=$SHARE/scala-2.10.5
 export INTELLIJ=$SHARE/idea-IC-141.1532.4
-export SPARK==$SHARE/spark-1.4.0
-export PATH=$PATH:$SCALA/bin:$INTELLIJ/bin:$SPARK/bin
+export SPARK=$SHARE/spark-1.4.0
+export KAFKA=$SHARE/kafka_2.10-0.8.2.1
+export PATH=$PATH:$SCALA/bin:$INTELLIJ/bin:$SPARK/bin:$KAFKA/bin
 
 ##History
 export HISTSIZE=10000
