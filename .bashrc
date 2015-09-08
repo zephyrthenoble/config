@@ -37,6 +37,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# source things if they exist
 if [ -d "$HOME/.pythonrc" ]; then
     export PYTHONSTARTUP=~/.pythonrc
 fi
@@ -47,6 +48,10 @@ then
 elif [ -f "/etc/dircolors" ]
 then
     eval $(dircolors -b /etc/dircolors)
+fi
+
+if [ -d "$HOME/.aws" ]; then
+    export AWS_CONFIG_FILE='~/.aws/config'
 fi
 
 if [ -d "$HOME/google-cloud-sdk" ]; then
@@ -67,30 +72,25 @@ hostname='\e[0;32m\h\e[0m';
 directory='\e[1;36m\W\e[0m';
 commandnumber='\e[1;31m$?\e[0m';
 export PS1="-[$username@$hostname]-[$directory $commandnumber]\n-> "
+
 export PATH="$PATH:/usr/local/bin"
-export AWS_CONFIG_FILE='~/.aws/config'
 export XDG_CONFIG_COME='~/.config'
-export PYTHONSTARTUP=~/.pythonrc
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export LFS=/mnt/lfs
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export JAVA_HOME=/usr/lib/jvm/default-java
-
-
-#work related, not sure how to differentiate this stuff
-export SHARE=/usr/local/share
-export SCALA=$SHARE/scala-2.10.5
-export INTELLIJ=$SHARE/idea-IC-141.1532.4
-export SPARK=$SHARE/spark-1.4.0
-export KAFKA=$SHARE/kafka_2.10-0.8.2.1
-export PATH=$PATH:$SCALA/bin:$INTELLIJ/bin:$SPARK/bin:$KAFKA/bin
 
 ##History
 export HISTSIZE=10000
 export HISTCONTROL=erasedups
 shopt -s histappend
+
+#computer-specific bashrc
+if [ -f "$HOME/.localbashrc" ]; then
+    source $HOME/.localbashrc
+fi
+
 
 ###Startup
 welcome
