@@ -1,17 +1,21 @@
 " turns off vi compatibility
 set nocompatible
+" sets our leader
 let mapleader=","
 " stops vim from trying to run modelines
 set nomodeline
 " set numbers
 set nu
 
+" changes the title of the terminal
 set title
+" loads plugin files for filetypes
 filetype plugin indent on
+" c style indenting 
 set cindent
 
 
-" Starts up pathogen
+" Starts up pathogen if installed
 if isdirectory($HOME . "/.vim/bundle/vim-pathogen/autoload")
     runtime bundle/vim-pathogen/autoload/pathogen.vim
     execute pathogen#infect()
@@ -19,6 +23,7 @@ endif
 
 " toggle insert paste
 set pastetoggle=<F2>
+" lets you delete over the end of a line
 set backspace=indent,eol,start
 
 " toggle mouse
@@ -37,41 +42,60 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " things to run if in gui environment
 if &t_Co > 2 || has("gui_running")
+    " allows you to toggle mouse wit hF#
     map <F3> :call ToggleMouse()<CR>
+    " turns on syntax stuff
     syntax on
+    " highlight your search
     set hlsearch
+    " spooky background color
     set background=dark
+    " attempts to allow the x clipboard and the vim clipboard to work
     set clipboard=unnamedplus
     " needed to get the status line stuff working
     set laststatus=2
+    " let's us use pretty colors in vim
     set t_Co=256
 endif
 
 
-syntax on
+" lets you keep the changed buffer without saving it or something?
 set hidden
+" search ignores case by default
 set ignorecase
+" if a search has a capital letter, starts searching for only things with caps
 set smartcase
+" stops text from wrapping, so we have super long lines like we want
 set nowrap
+" while searching for something, show all strings matching the search as you
+" type it out
 set incsearch
+" comments are now green
 highlight Comment ctermfg=green
 
 
 "Random stuff
 "menu added when you tab complete in : mode
 set wildmenu
+" starts with the longest possible outcome
 set wildmode=list:longest,full
+" ignore these filetypes by default, basically files you won't generally open
+" in vim
 set wildignore=*.o,*~,*.pyc
+" shows line and column position in the status bar
 set ruler
-set laststatus=2
+" adds a confirm dialog when trying to quit without saving instead of failing
 set confirm
-au FileType c,cpp,java setlocal comments-=:// comments+=f://
+" shows a line to allow me to see when I get to 80 characters
 set colorcolumn=81
+" allows you to wrap around lines
 set whichwrap+=<,>,h,l,[,]
 
 
 " For backwards compatibility, check for autocmd
 if has('autocmd')
+    " needed to define what a comment is in these languages I guess
+    au FileType c,cpp,java setlocal comments-=:// comments+=f://
     " Plaintext only, break on 78
     autocmd FileType text setlocal textwidth=78
     " Commenting blocks of code. ,cc to add, ,cu to remove
@@ -90,7 +114,7 @@ if has('autocmd')
 endif
 
 
-" Custom Functions
+" Remaps
 " autocomment
 noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>        
@@ -108,11 +132,30 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 " reopen as sudo
 cmap w!! w !sudo tee % >/dev/null
 
+
+" Because I'm HARDCORE and don't want arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+
+" ############## Plugins ##############
+
+function! AirLineLoad()
+    let g:airline#extensions#whitespace#enabled = 1
+endfunction
+
 function! SyntasticLoad()
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
+    " ignore file types that syntastic throws up on
+    let g:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
 
+    " Scala has fsc and scalac checkers--running both is pretty redundant and
+    " " slow. An explicit `:SyntasticCheck scalac` can always run the other.
+    " let g:syntastic_scala_checkers = ['fsc']
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
@@ -220,6 +263,17 @@ function! NeoCompleteLoad()
     " https://github.com/c9s/perlomni.vim
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 endfunction
-call UltiSnipsLoad()
-call SyntasticLoad()
-call NeoCompleteLoad()
+
+function! CallPluginLoads()
+    let BUNDLE=$HOME . "/.vim/bundle/"
+    call AirLineLoad()
+    call UltiSnipsLoad()
+    call SyntasticLoad()
+    call NeoCompleteLoad()
+endfunction
+
+
+if isdirectory($HOME . "/.vim/bundle/vim-pathogen/autoload")
+    call CallPluginLoads()
+endif
+    
