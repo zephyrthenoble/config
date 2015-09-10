@@ -11,8 +11,17 @@ set nu
 set title
 " loads plugin files for filetypes
 filetype plugin indent on
-" c style indenting 
+" c style indenting
 set cindent
+" use UTF8 everywhere because we aren't animals
+set encoding=utf-8
+" let Tab move you around
+nnoremap <tab> %
+vnoremap <tab> %
+" let us use ; for : because you never use that in normal mode
+nnoremap ; :
+" strip whitespace from file
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 
 " Starts up pathogen if installed
@@ -72,7 +81,8 @@ set nowrap
 set incsearch
 " comments are now green
 highlight Comment ctermfg=green
-
+" shows only relative line numbers from the current cursor position
+set relativenumber
 
 "Random stuff
 "menu added when you tab complete in : mode
@@ -106,7 +116,7 @@ if has('autocmd')
     autocmd FileType mail                   let b:comment_leader = '> '
     autocmd FileType vim                    let b:comment_leader = '" '
     " go fmt when go file closed
-    autocmd FileType go autocmd BufWritePre <buffer> Fmt 
+    autocmd FileType go autocmd BufWritePre <buffer> Fmt
     " make sure vim knows .md files are markdown
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -117,7 +127,7 @@ endif
 " Remaps
 " autocomment
 noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>        
+noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 " edit .vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -134,12 +144,27 @@ cmap w!! w !sudo tee % >/dev/null
 
 
 " Because I'm HARDCORE and don't want arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
 
+" stop help from popping up when you hit F1
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
 
+" move around windows with Ctrl-direction
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 " ############## Plugins ##############
 
 function! AirLineLoad()
@@ -276,4 +301,3 @@ endfunction
 if isdirectory($HOME . "/.vim/bundle/vim-pathogen/autoload")
     call CallPluginLoads()
 endif
-    
