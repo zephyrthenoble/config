@@ -30,6 +30,14 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# source things if they exist
 if [ -d "$HOME/.pythonrc" ]; then
     export PYTHONSTARTUP=~/.pythonrc
 fi
@@ -40,6 +48,10 @@ then
 elif [ -f "/etc/dircolors" ]
 then
     eval $(dircolors -b /etc/dircolors)
+fi
+
+if [ -d "$HOME/.aws" ]; then
+    export AWS_CONFIG_FILE='~/.aws/config'
 fi
 
 if [ -d "$HOME/google-cloud-sdk" ]; then
@@ -60,22 +72,25 @@ hostname='\e[0;32m\h\e[0m';
 directory='\e[1;36m\W\e[0m';
 commandnumber='\e[1;31m$?\e[0m';
 export PS1="-[$username@$hostname]-[$directory $commandnumber]\n-> "
+
 export PATH="$PATH:/usr/local/bin"
-export AWS_CONFIG_FILE='~/.aws/config'
 export XDG_CONFIG_COME='~/.config'
-export PYTHONSTARTUP=~/.pythonrc
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export JAVA_HOME=/usr/java/jdk.8.0_25
-export LFS=/mnt/lfs
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
+export JAVA_HOME=/usr/lib/jvm/default-java
 
 ##History
 export HISTSIZE=10000
 export HISTCONTROL=erasedups
 shopt -s histappend
+
+#computer-specific bashrc
+if [ -f "$HOME/.localbashrc" ]; then
+    source $HOME/.localbashrc
+fi
+
 
 ###Startup
 welcome

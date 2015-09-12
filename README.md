@@ -1,7 +1,7 @@
 zephyrthenoble's home directory config files
 ============================================
 
-clone to a location
-bash installer.sh
+1. clone to a location
+2. bash installer.sh
 
 verify overwrites
