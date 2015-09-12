@@ -8,7 +8,6 @@ alias cd..='cd ..'
 alias dl='cd ~/Downloads'
 alias python='python2.7'
 alias rm='rm -i'
-alias rustc="/usr/bin/rustc"
 
 # Require sudo
 alias yum="sudo yum"
