@@ -15,11 +15,10 @@ filetype plugin indent on
 set cindent
 " use UTF8 everywhere because we aren't animals
 set encoding=utf-8
-" let Tab move you around
+" let Tab move you around 
 nnoremap <tab> %
 vnoremap <tab> %
-" let us use ; for : because you never use that in normal mode
-nnoremap ; :
+
 " strip whitespace from file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
