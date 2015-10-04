@@ -15,11 +15,10 @@ filetype plugin indent on
 set cindent
 " use UTF8 everywhere because we aren't animals
 set encoding=utf-8
-" let Tab move you around
+" let Tab move you around 
 nnoremap <tab> %
 vnoremap <tab> %
-" let us use ; for : because you never use that in normal mode
-nnoremap ; :
+
 " strip whitespace from file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
@@ -53,6 +52,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 if &t_Co > 2 || has("gui_running")
     " allows you to toggle mouse wit hF#
     map <F3> :call ToggleMouse()<CR>
+    set mouse=a
     " turns on syntax stuff
     syntax on
     " highlight your search
@@ -105,11 +105,12 @@ set whichwrap+=<,>,h,l,[,]
 " For backwards compatibility, check for autocmd
 if has('autocmd')
     " needed to define what a comment is in these languages I guess
-    au FileType c,cpp,java setlocal comments-=:// comments+=f://
-    " Plaintext only, break on 78
+    au FileType c,cpp,java,rust setlocal comments-=:// comments+=f://
+    " Text only, break on 78
     autocmd FileType text setlocal textwidth=78
+    autocmd FileType markdown setlocal textwidth=78
     " Commenting blocks of code. ,cc to add, ,cu to remove
-    autocmd FileType c,cpp,java,scala,go    let b:comment_leader = '// '
+    autocmd FileType c,cpp,java,scala,go,rust    let b:comment_leader = '// '
     autocmd FileType sh,ruby,python         let b:comment_leader = '# '
     autocmd FileType conf,fstab             let b:comment_leader = '# '
     autocmd FileType tex                    let b:comment_leader = '% '
@@ -289,12 +290,21 @@ function! NeoCompleteLoad()
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 endfunction
 
+function! VimGo()
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+endfunction
+
 function! CallPluginLoads()
     let BUNDLE=$HOME . "/.vim/bundle/"
     call AirLineLoad()
     call UltiSnipsLoad()
     call SyntasticLoad()
     call NeoCompleteLoad()
+    call VimGo()
 endfunction
 
 

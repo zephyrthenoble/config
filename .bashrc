@@ -71,7 +71,8 @@ username='\e[1;34m\u\e[0m';
 hostname='\e[0;32m\h\e[0m';
 directory='\e[1;36m\W\e[0m';
 commandnumber='\e[1;31m$?\e[0m';
-export PS1="-[$username@$hostname]-[$directory $commandnumber]\n-> "
+time='\@'
+export PS1="-[$username@$hostname]-[$directory $commandnumber] - $time\n-> "
 
 export PATH="$PATH:/usr/local/bin"
 export XDG_CONFIG_COME='~/.config'
