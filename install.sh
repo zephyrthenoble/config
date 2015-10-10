@@ -37,7 +37,8 @@ cd $HOME
 for FILE in $FILES; do
     DIRECTORY=`dirname $FILE`
     # we don't need some files
-    if [ $FILE != "README.md" ] && [ $FILE != "install.sh" ] && [ $FILE != "update.sh" ]; then
+    if [ $FILE != "README.md" ] && [ $FILE != "install.sh" ] && [ $FILE != "update.sh" ] \
+        && [ $FILE != ".gitmodules" ] && [ $FILE != ".gitconfig" ] ; then
         if [ "." != "$DIRECTORY" ]; then
             [ -d "$DIRECTORY" ] || mkdir -p $DIRECTORY
         fi
