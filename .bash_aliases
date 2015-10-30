@@ -1,16 +1,23 @@
 # .bash_aliases
 
-if type -P yum 1>/dev/null 2>&1; then 
-alias install="sudo yum install"
-alias uninstall="sudo yum remove"
-alias update="sudo yum update"
-alias upgrade="sudo yum upgrade"
+if type -P dnf 1>/dev/null 2>&1; then 
+INSTALLER="dnf"
 elif type -P apt-get 1>/dev/null 2>&1; then
-alias install="sudo apt-get install"
-alias uninstall="sudo apt-get remove"
-alias update="sudo apt-get update"
-alias upgrade="sudo apt-get upgrade"
+INSTALLER="apt-get"
+elif type -P yum 1>/dev/null 2>&1; then 
+INSTALLER="yum"
 fi
+
+alias install="$INSTALLER install"
+alias uninstall="$INSTALLER remove"
+alias update="$INSTALLER update"
+alias upgrade="$INSTALLER upgrade"
+
+alias sinstall="sudo $INSTALLER install"
+alias suninstall="sudo $INSTALLER remove"
+alias supdate="sudo $INSTALLER update"
+alias supgrade="sudo $INSTALLER upgrade"
+
 
 # User specific aliases and functions
 alias path='echo -e ${PATH//:/\\n}'
@@ -22,12 +29,4 @@ alias python='python2.7'
 alias rm='rm -i'
 
 # Require sudo
-alias yum="sudo yum"
-alias yumi="sudo yum install"
-alias yumu="sudo yum update"
-alias apt-get="sudo apt-get"
-alias apti="sudo apt-get install"
 alias systemctl="sudo systemctl"
-alias lpf="sudo lpf"
-alias pip="sudo pip"
-
