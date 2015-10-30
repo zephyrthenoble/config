@@ -3,9 +3,13 @@
 if type -P yum 1>/dev/null 2>&1; then 
 alias install="sudo yum install"
 alias uninstall="sudo yum remove"
+alias update="sudo yum update"
+alias upgrade="sudo yum upgrade"
 elif type -P apt-get 1>/dev/null 2>&1; then
 alias install="sudo apt-get install"
 alias uninstall="sudo apt-get remove"
+alias update="sudo apt-get update"
+alias upgrade="sudo apt-get upgrade"
 fi
 
 # User specific aliases and functions

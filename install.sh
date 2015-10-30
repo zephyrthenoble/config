@@ -1,8 +1,8 @@
-#! /bin/sh
+#! /bin/bash
 # link all files to the home directory, asking about overwrites
 cd `dirname $0`
 FORCE=false
-UPDATE=false
+INTERACTIVE=false
 while getopts ":fuh" opt; do
   case $opt in
     f)
@@ -10,11 +10,11 @@ while getopts ":fuh" opt; do
       FORCE=true
       ;;
     u)
-      echo "updating only"
-      UPDATE=true
+      echo "interactive"
+      INTERACTIVE=true
       ;;
     h)
-      echo "-f force removal of everything\n-u updates symlinks, only making new ones"
+      echo "Run without arguments to only add new symlinks\n\n-f force removal of everything\n-i interactively replace symlinks"
       exit
       ;;
     \?)
@@ -25,29 +25,42 @@ while getopts ":fuh" opt; do
 done
 
 git submodule init
-git submodule update
-bash update.sh
+# git submodule update
+# bash update.sh
+containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+  return 1
+}
 
+#using SCRIPT_DIR allows us to get the absolute path to the files in this repo
 SCRIPT_DIR=`pwd`
 SCRIPT_NAME=`basename $0`
-FILES=`git ls-tree -r --name-only HEAD`
-delete=README.md
+FILES=`git ls-tree --name-only HEAD`
+IGNORE=("README.md" "install.sh" "update.sh" ".gitmodules" ".gitconfig")
+if [ -d "$HOME/.config" ] && !  [ -L "$HOME/.config" ]; then
+    mv $HOME/.config backup.conf
+    cp -rT backup.conf .config
+    echo "Moved and copied .config"
+fi
 echo $FILES
+# go to home and start making symlinks
 cd $HOME
 for FILE in $FILES; do
     DIRECTORY=`dirname $FILE`
     # we don't need some files
-    if [ $FILE != "README.md" ] && [ $FILE != "install.sh" ] && [ $FILE != "update.sh" ]; then
-        if [ "." != "$DIRECTORY" ]; then
-            [ -d "$DIRECTORY" ] || mkdir -p $DIRECTORY
-        fi
+
+    echo $FILE
+    if ! containsElement "$FILE" "${IGNORE[@]}" ; then
+        echo "working on it"
         if [ "$FORCE" = true ] ; then
-            ln -v -s -f -n $SCRIPT_DIR/$FILE $FILE
+            ln -v -s -f -n $SCRIPT_DIR/$FILE $HOME/$FILE
         else
-            if [ "$UPDATE" = true ] && [ -L "$FILE" ]; then
-                echo "$FILE symlink already exists"
+            if [ "$INTERACTIVE" = true ] && [ -L "$FILE" ]; then
+                ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $HOME/$FILE
             else
-                ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $FILE
+#                 echo "$FILE symlink already exists"
+                    echo "$FILE created"
             fi
         fi
     fi

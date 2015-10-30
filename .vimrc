@@ -23,6 +23,8 @@ nnoremap ; :
 " strip whitespace from file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
+nnoremap <M-h> :bp<CR>
+nnoremap <M-l> :bn<CR>
 
 " Starts up pathogen if installed
 if isdirectory($HOME . "/.vim/bundle/vim-pathogen/autoload")
@@ -84,6 +86,10 @@ set incsearch
 highlight Comment ctermfg=green
 " shows only relative line numbers from the current cursor position
 set relativenumber
+
+" toggle line numbers
+map <F6> :set number!<CR>
+map <F7> :set relativenumber!<CR>
 
 "Random stuff
 "menu added when you tab complete in : mode
