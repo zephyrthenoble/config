@@ -18,6 +18,8 @@ alias suninstall="sudo $INSTALLER remove"
 alias supdate="sudo $INSTALLER update"
 alias supgrade="sudo $INSTALLER upgrade"
 
+alias ghistory="history | grep"
+alias gps="ps aux | grep"
 
 # User specific aliases and functions
 alias path='echo -e ${PATH//:/\\n}'
