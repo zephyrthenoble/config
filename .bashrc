@@ -15,9 +15,9 @@ fi
 function backup { /bin/tar "czf" "$@" "$@.tgz" ;}
 welcome() {
     if command -v figlet 1>/dev/null; then
-        figlet Welcome Back $USERNAME
+        figlet Welcome Back $USER
     else
-        echo "Welcome Back $USERNAME"
+        echo "Welcome Back $USER"
     fi
 }
 # Source global definitions
