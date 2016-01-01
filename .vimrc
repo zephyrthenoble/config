@@ -113,15 +113,15 @@ if has('autocmd')
     " needed to define what a comment is in these languages I guess
     au FileType c,cpp,java,rust setlocal comments-=:// comments+=f://
     " Text only, break on 78
-    autocmd FileType text setlocal textwidth=78
-    autocmd FileType markdown setlocal textwidth=78
+    autocmd FileType text setlocal textwidth=90
+    autocmd FileType markdown setlocal textwidth=90
     " Commenting blocks of code. ,cc to add, ,cu to remove
-    autocmd FileType c,cpp,java,scala,go,rust    let b:comment_leader = '// '
-    autocmd FileType sh,ruby,python         let b:comment_leader = '# '
-    autocmd FileType conf,fstab             let b:comment_leader = '# '
-    autocmd FileType tex                    let b:comment_leader = '% '
-    autocmd FileType mail                   let b:comment_leader = '> '
-    autocmd FileType vim                    let b:comment_leader = '" '
+    autocmd FileType c,cpp,java,scala,go,rust       let b:comment_leader = '// '
+    autocmd FileType sh,ruby,python,yaml            let b:comment_leader = '# '
+    autocmd FileType conf,fstab                     let b:comment_leader = '# '
+    autocmd FileType tex                            let b:comment_leader = '% '
+    autocmd FileType mail                           let b:comment_leader = '> '
+    autocmd FileType vim                            let b:comment_leader = '" '
     " go fmt when go file closed
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
     " make sure vim knows .md files are markdown
@@ -187,12 +187,12 @@ function! SyntasticLoad()
 
     " Scala has fsc and scalac checkers--running both is pretty redundant and
     " " slow. An explicit `:SyntasticCheck scalac` can always run the other.
-    " let g:syntastic_scala_checkers = ['fsc']
+    let g:syntastic_scala_checkers = ['fsc']
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
-    let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"     let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
     nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 endfunction
 
@@ -211,6 +211,8 @@ function! NeoCompleteLoad()
     let g:acp_enableAtStartup = 0
     " Use neocomplete.
     let g:neocomplete#enable_at_startup = 1
+    " stops that horrible preview window from popping up
+    set completeopt-=preview
     " Use smartcase.
     let g:neocomplete#enable_smart_case = 1
     " Set minimum syntax keyword length.

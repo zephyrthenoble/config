@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/novetta/SQL-Arch/output/individual_counts/TOTAL'
+let g:netrw_dirhist_2='/novetta/Kafka-Protobuf/src/test/resources'
+let g:netrw_dirhist_3='/novetta/Kafka-Protobuf'
+let g:netrw_dirhist_4='/etc/suricata/rules'
+let g:netrw_dirhist_5='/novetta/Jackel/scripts'
+let g:netrw_dirhist_6='/novetta/Jackal/pdf_parser'
+let g:netrw_dirhist_7='/home/zephyrthenoble/Documents/zephyrthenoble_com/zephyrthenoble_com'
+let g:netrw_dirhist_8='/novetta/Jackal/parallel'

@@ -43,6 +43,11 @@ if [ -d "$HOME/.config" ] && !  [ -L "$HOME/.config" ]; then
     cp -rT backup.conf .config
     echo "Moved and copied .config"
 fi
+if [ -d "$HOME/.vim" ] && !  [ -L "$HOME/.vim" ]; then
+    mv $HOME/.vim backup.vim
+    cp -rT backup.vim .vim
+    echo "Moved and copied .vim"
+fi
 echo $FILES
 # go to home and start making symlinks
 cd $HOME

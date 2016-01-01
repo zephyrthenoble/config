@@ -1,0 +1,1 @@
+/home/zephyrthenoble/config/.vim/ftplugin/go/fmt.vim
