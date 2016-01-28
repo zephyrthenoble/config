@@ -1,1 +1,0 @@
-/home/zephyrthenoble/config/.vim/ftplugin/go.vim
