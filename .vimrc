@@ -1,13 +1,42 @@
-" turns off vi compatibility
-set nocompatible
-" sets our leader
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/autoload/plug.vim
+call plug#begin('~/.vim/plugged')
+
+" plugin on GitHub repo
+Plug 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/syntastic'
+Plug 'bling/vim-airline'
+Plug 'shougo/neocomplete.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'vim-ruby/vim-ruby'
+Plug 'fatih/vim-go'
+Plug 'tpope/vim-markdown'
+Plug 'othree/html5.vim'
+Plug 'elzr/vim-json'
+Plug 'klen/python-mode'
+Plug 'derekwyatt/vim-scala'
+" Needed to speed up folding while using pymode
+Plug 'konfekt/fastfold'
+
+call plug#end()            " required
+
+syntax on
+filetype plugin indent on
+
+
+
+" set up other stuff
 let mapleader=","
 " stops vim from trying to run modelines
 set nomodeline
 " set numbers
 set nu
 
-" changes the title of the terminal
 set title
 " loads plugin files for filetypes
 filetype plugin indent on
@@ -15,7 +44,7 @@ filetype plugin indent on
 set cindent
 " use UTF8 everywhere because we aren't animals
 set encoding=utf-8
-" let Tab move you around 
+" let Tab move you around
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -26,10 +55,6 @@ nnoremap <M-h> :bp<CR>
 nnoremap <M-l> :bn<CR>
 
 " Starts up pathogen if installed
-if isdirectory($HOME . "/.vim/bundle/vim-pathogen/autoload")
-    runtime bundle/vim-pathogen/autoload/pathogen.vim
-    execute pathogen#infect()
-endif
 
 " toggle insert paste
 set pastetoggle=<F2>
@@ -172,38 +197,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" ############## Plugins ##############
-
-function! AirLineLoad()
-    let g:airline#extensions#whitespace#enabled = 1
-endfunction
-
-function! SyntasticLoad()
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-    " ignore file types that syntastic throws up on
-    let g:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
-
-    " Scala has fsc and scalac checkers--running both is pretty redundant and
-    " " slow. An explicit `:SyntasticCheck scalac` can always run the other.
-    let g:syntastic_scala_checkers = ['fsc']
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-"     let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-    nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-endfunction
-
-
-function! UltiSnipsLoad()
-    let g:UltiSnipsExpandTrigger="<C-CR>"
-    let g:UltiSnipsJumpForwardTrigger="<C-tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-endfunction
-
-
 
 function! NeoCompleteLoad()
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -300,24 +293,21 @@ function! NeoCompleteLoad()
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 endfunction
 
-function! VimGo()
-    let g:go_highlight_functions = 1
-    let g:go_highlight_methods = 1
-    let g:go_highlight_structs = 1
-    let g:go_highlight_operators = 1
-    let g:go_highlight_build_constraints = 1
+
+function! NERDTreeLoad()
+    "NERDTree
+    ""Toggle with ctrl-n
+    map <C-n> :NERDTreeToggle<CR>
+	"Starts up nerdtree if you run just vim with no args
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endfunction
 
-function! CallPluginLoads()
-    let BUNDLE=$HOME . "/.vim/bundle/"
-    call AirLineLoad()
-    call UltiSnipsLoad()
-    call SyntasticLoad()
-    call NeoCompleteLoad()
-    call VimGo()
+function! PythonModeLoad()
+    " disable rope refactoring because it's slow and not needed
+    let g:pymode_rope=0
 endfunction
-
-
-if isdirectory($HOME . "/.vim/bundle/vim-pathogen/autoload")
-    call CallPluginLoads()
-endif
+"Neocomplete
+call NeoCompleteLoad()
+"NERDTree
+call NERDTreeLoad()
