@@ -28,7 +28,7 @@ call plug#end()            " required
 syntax on
 filetype plugin indent on
 
-
+     
 
 " set up other stuff
 let mapleader=","
@@ -311,3 +311,6 @@ endfunction
 call NeoCompleteLoad()
 "NERDTree
 call NERDTreeLoad()
+
+let g:tex_fold_enabled=1
+let g:python_syntax_folding = 1
