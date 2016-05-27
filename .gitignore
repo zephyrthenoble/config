@@ -1,0 +1,4 @@
+.config/*
+.vim/autoload/plug.vim.old
+.vim/plugged/
+backup.conf/

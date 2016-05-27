@@ -20,6 +20,7 @@ Plug 'othree/html5.vim'
 Plug 'elzr/vim-json'
 Plug 'klen/python-mode'
 Plug 'derekwyatt/vim-scala'
+Plug 'rust-lang/rust.vim'
 " Needed to speed up folding while using pymode
 Plug 'konfekt/fastfold'
 

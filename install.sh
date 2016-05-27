@@ -5,16 +5,12 @@ FORCE=false
 INTERACTIVE=false
 while getopts ":fuh" opt; do
   case $opt in
-    f)
-      echo "forcing removal!"
-      FORCE=true
-      ;;
     u)
       echo "interactive"
       INTERACTIVE=true
       ;;
     h)
-      echo "Run without arguments to only add new symlinks\n\n-f force removal of everything\n-i interactively replace symlinks"
+      echo "Run without arguments to update symlinks\n\n-i interactively replace symlinks"
       exit
       ;;
     \?)
@@ -58,15 +54,10 @@ for FILE in $FILES; do
     echo $FILE
     if ! containsElement "$FILE" "${IGNORE[@]}" ; then
         echo "working on it"
-        if [ "$FORCE" = true ] ; then
-            ln -v -s -f -n $SCRIPT_DIR/$FILE $HOME/$FILE
+        if [ "$INTERACTIVE" = true ] && [ -L "$FILE" ]; then
+            ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $HOME/$FILE
         else
-            if [ "$INTERACTIVE" = true ] && [ -L "$FILE" ]; then
-                ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $HOME/$FILE
-            else
-#                 echo "$FILE symlink already exists"
-                    echo "$FILE created"
-            fi
+            ln -v -s -f -n $SCRIPT_DIR/$FILE $HOME/$FILE
         fi
     fi
 done
