@@ -61,3 +61,4 @@ for FILE in $FILES; do
         fi
     fi
 done
+mkdir $HOME/.logs

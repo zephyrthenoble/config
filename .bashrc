@@ -8,7 +8,7 @@ if [ -z ${DESKTOP_SESSION+x} ]; then
 else
     # we have a desktop session
     # PROMPT_COMMAND is run before every shell execution
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD##*/}\007"; if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi;'
 fi
 
 #User defined functions
