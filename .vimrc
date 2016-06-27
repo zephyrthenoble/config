@@ -6,11 +6,9 @@ call plug#begin('~/.vim/plugged')
 
 " plugin on GitHub repo
 Plug 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
+Plug 'konfekt/fastfold'
 Plug 'shougo/neocomplete.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'vim-ruby/vim-ruby'
@@ -22,7 +20,7 @@ Plug 'klen/python-mode'
 Plug 'derekwyatt/vim-scala'
 Plug 'rust-lang/rust.vim'
 " Needed to speed up folding while using pymode
-Plug 'konfekt/fastfold'
+
 
 call plug#end()            " required
 
@@ -294,24 +292,12 @@ function! NeoCompleteLoad()
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 endfunction
 
-
-function! NERDTreeLoad()
-    "NERDTree
-    ""Toggle with ctrl-n
-    map <C-n> :NERDTreeToggle<CR>
-	"Starts up nerdtree if you run just vim with no args
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-endfunction
-
 function! PythonModeLoad()
     " disable rope refactoring because it's slow and not needed
     let g:pymode_rope=0
 endfunction
 "Neocomplete
 call NeoCompleteLoad()
-"NERDTree
-call NERDTreeLoad()
 
 let g:tex_fold_enabled=1
 let g:python_syntax_folding = 1
