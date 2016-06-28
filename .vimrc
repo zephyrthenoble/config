@@ -4,9 +4,10 @@ filetype off                  " required
 set rtp+=~/.vim/autoload/plug.vim
 call plug#begin('~/.vim/plugged')
 
-" plugin on GitHub repo
+" Needed to speed up folding while using pymode
+Plug 'konfekt/fastfold'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/syntastic'
@@ -21,15 +22,12 @@ Plug 'elzr/vim-json'
 Plug 'klen/python-mode'
 Plug 'derekwyatt/vim-scala'
 Plug 'rust-lang/rust.vim'
-" Needed to speed up folding while using pymode
-Plug 'konfekt/fastfold'
 
 call plug#end()            " required
 
 syntax on
 filetype plugin indent on
 
-     
 
 " set up other stuff
 let mapleader=","
@@ -307,6 +305,7 @@ endfunction
 function! PythonModeLoad()
     " disable rope refactoring because it's slow and not needed
     let g:pymode_rope=0
+    let g:pymode_python = 'python2'    
 endfunction
 "Neocomplete
 call NeoCompleteLoad()
