@@ -8,8 +8,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'konfekt/fastfold'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'shougo/neocomplete.vim'
@@ -292,16 +290,6 @@ function! NeoCompleteLoad()
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 endfunction
 
-
-function! NERDTreeLoad()
-    "NERDTree
-    ""Toggle with ctrl-n
-    map <C-n> :NERDTreeToggle<CR>
-	"Starts up nerdtree if you run just vim with no args
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-endfunction
-
 function! PythonModeLoad()
     " disable rope refactoring because it's slow and not needed
     let g:pymode_rope=0
@@ -309,8 +297,6 @@ function! PythonModeLoad()
 endfunction
 "Neocomplete
 call NeoCompleteLoad()
-"NERDTree
-call NERDTreeLoad()
 
 let g:tex_fold_enabled=1
 let g:python_syntax_folding = 1
