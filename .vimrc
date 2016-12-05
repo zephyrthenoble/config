@@ -5,19 +5,18 @@ set rtp+=~/.vim/autoload/plug.vim
 call plug#begin('~/.vim/plugged')
 
 " Needed to speed up folding while using pymode
+Plug 'ervandew/supertab'
 Plug 'konfekt/fastfold'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
-Plug 'shougo/neocomplete.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'vim-ruby/vim-ruby'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-markdown'
 Plug 'othree/html5.vim'
 Plug 'elzr/vim-json'
-Plug 'klen/python-mode'
 Plug 'derekwyatt/vim-scala'
 Plug 'rust-lang/rust.vim'
 
