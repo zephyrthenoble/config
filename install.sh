@@ -20,9 +20,6 @@ while getopts ":fuh" opt; do
   esac
 done
 
-git submodule init
-# git submodule update
-# bash update.sh
 containsElement () {
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
@@ -53,7 +50,6 @@ for FILE in $FILES; do
 
     echo $FILE
     if ! containsElement "$FILE" "${IGNORE[@]}" ; then
-        echo "working on it"
         if [ "$INTERACTIVE" = true ] && [ -L "$FILE" ]; then
             ln -v --symbolic --interactive $SCRIPT_DIR/$FILE $HOME/$FILE
         else
