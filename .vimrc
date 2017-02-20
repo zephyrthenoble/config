@@ -36,6 +36,9 @@ set nomodeline
 " set numbers
 set nu
 
+" Starts scrolling 10 lines away from the bottom or top of the page
+set scrolloff=10
+
 set title
 " loads plugin files for filetypes
 filetype plugin indent on
