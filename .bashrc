@@ -66,6 +66,18 @@ if [ -d "/usr/lib64/openmpi" ]; then
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/openmpi/lib
 fi
 
+# https://marklodato.github.io/2013/10/25/github-two-factor-and-gnome-keyring.html
+# This tells D-Bus to use the instance that was started on the machine’s graphical login, 
+# and this in turn allows git-credential-gnome-keyring to talk to the main gnome-keyring-daemon instance.
+if [[ -z $DBUS_SESSION_BUS_ADDRESS ]]; then
+    if [[ -f ~/.dbus/session-bus/$(dbus-uuidgen --get)-0 ]]; then
+        source ~/.dbus/session-bus/$(dbus-uuidgen --get)-0
+        export DBUS_SESSION_BUS_ADDRESS
+    fi
+fi
+
+
+
 # Exports
 username='\e[1;34m\u\e[0m';
 hostname='\e[0;32m\h\e[0m';
