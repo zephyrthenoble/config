@@ -69,6 +69,9 @@ fi
 # https://marklodato.github.io/2013/10/25/github-two-factor-and-gnome-keyring.html
 # This tells D-Bus to use the instance that was started on the machine’s graphical login, 
 # and this in turn allows git-credential-gnome-keyring to talk to the main gnome-keyring-daemon instance.
+
+# did this to get gnome-keyring working with git
+# https://askubuntu.com/questions/773455/what-is-the-correct-way-to-use-git-with-gnome-keyring-and-https-repos
 if [[ -z $DBUS_SESSION_BUS_ADDRESS ]]; then
     if [[ -f ~/.dbus/session-bus/$(dbus-uuidgen --get)-0 ]]; then
         source ~/.dbus/session-bus/$(dbus-uuidgen --get)-0
