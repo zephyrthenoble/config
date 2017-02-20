@@ -76,8 +76,6 @@ if [[ -z $DBUS_SESSION_BUS_ADDRESS ]]; then
     fi
 fi
 
-
-
 # Exports
 username='\e[1;34m\u\e[0m';
 hostname='\e[0;32m\h\e[0m';
