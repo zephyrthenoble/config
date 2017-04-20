@@ -12,6 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdcommenter'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Languages
 Plug 'pangloss/vim-javascript'
