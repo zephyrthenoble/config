@@ -112,7 +112,7 @@ set incsearch
 " comments are now green
 highlight Comment ctermfg=green
 " shows only relative line numbers from the current cursor position
-set relativenumber
+"set relativenumber
 
 " toggle line numbers
 map <F6> :set number!<CR>
