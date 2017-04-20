@@ -96,6 +96,7 @@ export EDITOR="$VISUAL"
 export JAVA_HOME=/usr/lib/jvm/default-java
 
 # HISTORY
+setterm -blength 0
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
