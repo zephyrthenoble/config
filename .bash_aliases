@@ -27,7 +27,6 @@ alias ls='ls --sort=extension --color=auto'
 alias ll='ls -l -a'
 alias cd..='cd ..'
 alias dl='cd ~/Downloads'
-alias python='python2'
 alias rm='rm -i'
 
 # Require sudo
