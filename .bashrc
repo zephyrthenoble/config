@@ -87,7 +87,7 @@ commandnumber='\e[1;31m$?\e[0m';
 time='\@'
 export PS1="-[$username@$hostname]-[$directory $commandnumber] - $time\n-> "
 
-export PATH="$PATH:/usr/local/bin"
+export PATH="/usr/local/bin:/$PATH:"
 export XDG_CONFIG_COME='~/.config'
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -110,6 +110,12 @@ if [ -f "$HOME/.localbashrc" ]; then
     source $HOME/.localbashrc
 fi
 
+# pyenv
+if type -P pyenv 1>/dev/null 2>&1; then 
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 ###Startup
 welcome
