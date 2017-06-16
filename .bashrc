@@ -80,10 +80,10 @@ commandnumber='\e[1;31m$?\e[0m';
 time='\@'
 export PS1="-[$username@$hostname]-[$directory $commandnumber] - $time\n-> "
 
-export PATH="/usr/local/bin:/$PATH:"
+export PATH="/usr/local/bin/:$PATH"
 export XDG_CONFIG_COME='~/.config'
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export JAVA_HOME=/usr/lib/jvm/default-java
@@ -104,7 +104,7 @@ if [ -f "$HOME/.localbashrc" ]; then
 fi
 
 # pyenv
-if type -P pyenv 1>/dev/null 2>&1; then 
+if [ -d "$home/.pyenv" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
