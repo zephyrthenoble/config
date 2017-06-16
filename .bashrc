@@ -54,13 +54,6 @@ if [ -d "$HOME/.aws" ]; then
     export AWS_CONFIG_FILE='~/.aws/config'
 fi
 
-if [ -d "$HOME/google-cloud-sdk" ]; then
-    # The next line updates PATH for the Google Cloud SDK.
-    source '/home/zephyr/google-cloud-sdk/path.bash.inc'
-    # The next line enables bash completion for gcloud.
-    source '/home/zephyr/google-cloud-sdk/completion.bash.inc'
-    alias goapp=~/google-cloud-sdk/platform/google_appengine/goapp
-fi
 if [ -d "/usr/lib64/openmpi" ]; then
     export PATH=$PATH:/usr/lib64/openmpi/bin
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/openmpi/lib
