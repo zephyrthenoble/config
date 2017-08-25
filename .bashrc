@@ -107,7 +107,7 @@ fi
 if [ -d "$HOME/.pyenv" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    pyenv virtualenvwrapper > /dev/null 2>&1
 fi
 
 ###Startup
