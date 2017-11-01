@@ -107,7 +107,9 @@ fi
 if [ -d "$HOME/.pyenv" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
-    pyenv virtualenvwrapper > /dev/null 2>&1
+    export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+    export WORKON_HOME=$HOME/.virtualenvs
+    pyenv virtualenvwrapper_lazy
 fi
 
 ###Startup
