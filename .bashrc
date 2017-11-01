@@ -92,7 +92,7 @@ fi
 ## Conditional exporting
 ########################
 if [ -f "$HOME/.bash_aliases" ]; then
-    source /.bash_aliases
+    source $HOME/.bash_aliases
 fi
 
 if [ -d "$HOME/.pythonrc" ]; then
