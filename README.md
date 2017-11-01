@@ -2,6 +2,8 @@
 
 ## Setup
 Install several elements to get full functionality
+### [VimPlug](https://github.com/junegunn/vim-plug)
+* After installing this repo, open vim and run in normal mode `:PlugInstall` to install the plugins in .vimrc
 ### [pyenv](https://github.com/pyenv/pyenv-installer)
 * `curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash`
 * settings in `.bashrc` should be enabled after installation
