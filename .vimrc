@@ -82,7 +82,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 if &t_Co > 2 || has("gui_running")
     " allows you to toggle mouse wit hF#
     map <F3> :call ToggleMouse()<CR>
-    set mouse=a
+    " set mouse=a
     " turns on syntax stuff
     syntax on
     " highlight your search

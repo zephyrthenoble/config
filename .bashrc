@@ -1,5 +1,4 @@
 # .bashrc
-
 [ -z "$PS1" ] && return
 
 if [ -z ${DESKTOP_SESSION+x} ]; then
@@ -30,9 +29,14 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+# this should be sourced in /etc/profile
+# if ! shopt -oq posix; then
+ # if [ -f /usr/share/bash-completion/bash_completion ]; then
+   # . /usr/share/bash-completion/bash_completion
+ # elif [ -f /etc/bash_completion ]; then
+   # . /etc/bash_completion
+ # fi
+# fi
 ############################
 
 
@@ -125,6 +129,41 @@ fi
 if [ -d "/usr/lib/jvm/default-java" ]; then
     export JAVA_HOME=/usr/lib/jvm/default-java
 fi
+# nvm lazy loading
+alias nvm='load_nvm'
+
+load_nvm () {
+    if [ -z ${NVM_DIR+x} ]  ; then 
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+        echo "nvm now loaded, run again"
+    else
+        \nvm $@
+    fi
+}
+
+
+# rvm loading
+alias rvm='load_rvm'
+
+load_rvm () {
+# check if the script is installed
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+    # check if we have already loaded stuff
+    if [ -z ${RVM_DIR+x} ] ; then
+        source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+        export PATH="$PATH:$HOME/.rvm/bin"
+        export RVM_DIR="$HOME/.rvm"
+        echo "rvm now loaded, run again"
+    else
+        \rvm $@
+    fi
+else
+    echo "rvm not installed"
+fi 
+}
+
 # pyenv needs to be imported near the end
 if [ -d "$HOME/.pyenv" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
