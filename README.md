@@ -12,7 +12,7 @@ Install several elements to get full functionality
 * after each install of Python, run `pyenv shell $NEW_PYTHON; pyenv virtualenvwrapper`
 * Use `pyenv shell $PYTHON_VERSION; mkvirtualenv $NEW_VIRTENV` to create a new environment
 ### Async Language Servers
-* [python-language-server](https://github.com/palantir/python-language-server): pip install python-language-server
+* [python-language-server](https://github.com/palantir/python-language-server): Python language server by Palantir. `pip install python-language-server`
 ### Others
 * Ruby:
   * [rbenv](https://github.com/rbenv/rbenv): ruby virtual environments manager
