@@ -13,6 +13,7 @@ Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'nathanaelkane/vim-indent-guides'
 
 " Languages
 Plug 'pangloss/vim-javascript'
