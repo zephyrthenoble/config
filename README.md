@@ -11,6 +11,8 @@ Install several elements to get full functionality
 * `git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper`
 * after each install of Python, run `pyenv shell $NEW_PYTHON; pyenv virtualenvwrapper`
 * Use `pyenv shell $PYTHON_VERSION; mkvirtualenv $NEW_VIRTENV` to create a new environment
+### Async Language Servers
+* [python-language-server](https://github.com/palantir/python-language-server): pip install python-language-server
 ### Others
 * [rbenv](https://github.com/rbenv/rbenv): ruby virtual environments manager
   * [ruby-build](https://github.com/rbenv/ruby-build#readme): ruby version manager plugin for rbenv
