@@ -14,11 +14,15 @@ Install several elements to get full functionality
 ### Async Language Servers
 * [python-language-server](https://github.com/palantir/python-language-server): pip install python-language-server
 ### Others
-* [rbenv](https://github.com/rbenv/rbenv): ruby virtual environments manager
+* Ruby:
+  * [rbenv](https://github.com/rbenv/rbenv): ruby virtual environments manager
   * [ruby-build](https://github.com/rbenv/ruby-build#readme): ruby version manager plugin for rbenv
-* [nvm](https://github.com/creationix/nvm): node version manager
-* [rustup](https://github.com/rust-lang-nursery/rustup.rs#installation): rust version manager (try https://www.rustup.rs/)
-* [gvm](https://github.com/moovweb/gvm): go version manager (not being updated)
+* Javascript: 
+  * [nvm](https://github.com/creationix/nvm): node version manager
+* Rust
+  * [rustup](https://github.com/rust-lang-nursery/rustup.rs#installation): rust version manager (try https://www.rustup.rs/)
+* Go
+  * [gvm](https://github.com/moovweb/gvm): go version manager (not being updated)
 
 ## Installation
 1. `git clone https://github.com/zephyrthenoble/config.git`
