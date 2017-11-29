@@ -120,7 +120,7 @@ if [ -d "/usr/lib64/openmpi" ]; then
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/openmpi/lib
 fi
 if [ -d "$HOME/.config" ]; then
-    export XDG_CONFIG_HOME='$HOME/.config'
+    export XDG_CONFIG_HOME=$HOME/.config
 fi
 if [ -d "$HOME/go" ]; then
     export GOPATH=$HOME/go
