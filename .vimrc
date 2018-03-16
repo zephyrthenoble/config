@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+colorscheme default
+
 set rtp+=~/.vim/autoload/plug.vim
 call plug#begin('~/.vim/plugged')
 
