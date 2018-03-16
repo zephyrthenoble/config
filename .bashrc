@@ -167,10 +167,9 @@ fi
 # pyenv needs to be imported near the end
 if [ -d "$HOME/.pyenv" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
-    export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-    export WORKON_HOME=$HOME/.virtualenvs
     eval "$(pyenv init -)"
-    pyenv virtualenvwrapper_lazy
+    # install with git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+    eval "$(pyenv virtualenv-init -)"
 fi
 ########################
 
