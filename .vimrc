@@ -16,9 +16,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'nathanaelkane/vim-indent-guides'
 
 " Languages
-Plug 'pangloss/vim-javascript'
 Plug 'vim-ruby/vim-ruby'
-Plug 'fatih/vim-go'
 Plug 'tpope/vim-markdown'
 Plug 'othree/html5.vim'
 Plug 'elzr/vim-json'
@@ -98,6 +96,8 @@ if &t_Co > 2 || has("gui_running")
     set t_Co=256
 endif
 
+
+set background=dark
 
 " lets you keep the changed buffer without saving it or something?
 set hidden
@@ -213,3 +213,22 @@ nnoremap <C-l> <C-w>l
 
 let g:tex_fold_enabled=1
 let g:python_syntax_folding = 1
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_mode_map = {"mode": "passive"}
+map <F8> :SyntasticCheck<CR>
+map <C-F8> :SyntasticToggleMode<CR>
+map <M-F8> :lclose<CR>
+
+
+let g:indent_guides_enable_on_vim_startup = 1
+map <F9> :IndentGuidesToggle<CR>
