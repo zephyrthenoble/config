@@ -1,22 +1,22 @@
 # .bash_aliases
 
-if type -P dnf 1>/dev/null 2>&1; then 
-INSTALLER="dnf"
-elif type -P apt-get 1>/dev/null 2>&1; then
-INSTALLER="apt-get"
-elif type -P yum 1>/dev/null 2>&1; then 
-INSTALLER="yum"
-fi
-
-alias install="$INSTALLER install"
-alias uninstall="$INSTALLER remove"
-alias update="$INSTALLER update"
-alias upgrade="$INSTALLER upgrade"
-
-alias sinstall="sudo $INSTALLER install"
-alias suninstall="sudo $INSTALLER remove"
-alias supdate="sudo $INSTALLER update"
-alias supgrade="sudo $INSTALLER upgrade"
+# add a proxy command to insert proxy information as build args
+proxy_docker()                                                                   
+{                                                                                
+    if [ $# -gt 0 ] && [ "$1" == "build" ] && [ "$2" == "proxy" ] ; then         
+        shift # build                                                            
+        shift # proxy                                                            
+        PROXY_VARIABLES=`env | grep -i proxy | sed -e 's/^/--build-arg "/' | sed -e 's/$/"/'`
+        cmd="docker build $@ $PROXY_VARIABLES"                                   
+        echo $PROXY_VARIABLES                                                    
+        eval $cmd                                                                
+    else                                                                         
+        echo "normal"                                                            
+        command docker "$@"                                                      
+    fi                                                                           
+}                                                                                
+                                                                                 
+alias docker="proxy_docker"      
 
 alias ghistory="history | grep"
 alias gps="ps aux | grep"
