@@ -7,11 +7,11 @@ proxy_docker()
         shift # build                                                            
         shift # proxy                                                            
         PROXY_VARIABLES=`env | grep -i proxy | sed -e 's/^/--build-arg "/' | sed -e 's/$/"/'`
-        cmd="docker build $@ $PROXY_VARIABLES"                                   
+        cmd="docker build $@ $PROXY_VARIABLES"
+        echo "building with proxy variables"
         echo $PROXY_VARIABLES                                                    
         eval $cmd                                                                
     else                                                                         
-        echo "normal"                                                            
         command docker "$@"                                                      
     fi                                                                           
 }                                                                                
