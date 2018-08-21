@@ -6,16 +6,23 @@ colorscheme default
 set rtp+=~/.vim/autoload/plug.vim
 call plug#begin('~/.vim/plugged')
 
-" Needed to speed up folding while using pymode
 Plug 'ervandew/supertab'
+" Folding
+" Needed to speed up folding while using pymode
 Plug 'konfekt/fastfold'
 Plug 'nathanaelkane/vim-indent-guides'
+
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'kien/ctrlp.vim'
+
+" Python
+Plug 'vim-scripts/indentpython.vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'davidhalter/jedi-vim'
 
 " Languages
 Plug 'vim-ruby/vim-ruby'
@@ -159,22 +166,11 @@ if has('autocmd')
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
                 \| exe "normal! g`\"" | endif
+	au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 endif
 
 
 " Remaps
-" autocomment
-"noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-"noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
 
 " edit .vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -213,6 +209,21 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" space toggles folds
+nnoremap <space> za
+
+
+" Setting values 'let'
+
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 let g:tex_fold_enabled=1
 let g:python_syntax_folding = 1
 
@@ -234,3 +245,8 @@ map <M-F8> :lclose<CR>
 
 let g:indent_guides_enable_on_vim_startup = 1
 map <F9> :IndentGuidesToggle<CR>
+
+
+let g:SimpylFold_docstring_preview = 1
+
+let python_highlight_all=1
