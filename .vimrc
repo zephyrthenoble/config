@@ -145,6 +145,7 @@ set colorcolumn=81
 " allows you to wrap around lines
 set whichwrap+=<,>,h,l,[,]
 
+highlight BadWhitespace ctermbg=red guibg=red
 
 " For backwards compatibility, check for autocmd
 if has('autocmd')
@@ -248,5 +249,4 @@ map <F9> :IndentGuidesToggle<CR>
 
 
 let g:SimpylFold_docstring_preview = 1
-
 let python_highlight_all=1
