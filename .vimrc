@@ -225,8 +225,8 @@ let g:NERDCompactSexyComs = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-let g:tex_fold_enabled=1
-let g:python_syntax_folding = 1
+let g:tex_fold_enabled=0
+let g:python_syntax_folding = 0
 
 
 set statusline+=%#warningmsg#
@@ -247,6 +247,8 @@ map <M-F8> :lclose<CR>
 let g:indent_guides_enable_on_vim_startup = 1
 map <F9> :IndentGuidesToggle<CR>
 
+
+set nofoldenable
 
 let g:SimpylFold_docstring_preview = 1
 let python_highlight_all=1
