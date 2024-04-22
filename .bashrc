@@ -129,19 +129,9 @@ fi
 if [ -d "/usr/lib/jvm/default-java" ]; then
     export JAVA_HOME=/usr/lib/jvm/default-java
 fi
-# nvm lazy loading
-alias nvm='load_nvm'
 
-load_nvm () {
-    if [ -z ${NVM_DIR+x} ]  ; then 
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-        echo "nvm now loaded, run again"
-    else
-        \nvm $@
-    fi
-}
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 
 
 # rvm loading
@@ -180,3 +170,4 @@ fi
 welcome
 ls
 ##########
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
